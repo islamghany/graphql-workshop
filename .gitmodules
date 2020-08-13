@@ -1,0 +1,3 @@
+[submodule "00-client"]
+	path = 00-client
+	url = https://github.com/islamghany/graphql-workshop
