@@ -1,34 +1,43 @@
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import App from 'next/app';
-import Head from 'next/head';
-import React from 'react';
-import theme from '../src/theme';
-
-export default class MyApp extends App {
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { ThemeProvider } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
+import App from "next/app";
+import Head from "next/head";
+import React from "react";
+import theme from "../src/theme";
+import Navbar from "../src/components/Navbar";
+import withApollo from "../lib/withApollo";
+import { ApolloProvider } from "@apollo/client";
+class MyApp extends App {
   componentDidMount() {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
+    const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentElement.removeChild(jssStyles);
     }
   }
 
   render() {
-    const { Component, pageProps } = this.props;
-
+    const { Component, pageProps, apollo } = this.props;
     return (
-      <React.Fragment>
+      <ApolloProvider client={apollo}>
         <Head>
           <title>My page</title>
-          <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+          <meta
+            name="viewport"
+            content="minimum-scale=1, initial-scale=1, width=device-width"
+          />
         </Head>
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Component {...pageProps} />
+          <Navbar />
+          <Container maxWidth="lg">
+            <Component {...pageProps} />
+          </Container>
         </ThemeProvider>
-      </React.Fragment>
+      </ApolloProvider>
     );
   }
 }
+export default withApollo(MyApp);
