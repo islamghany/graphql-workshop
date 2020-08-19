@@ -1,0 +1,19 @@
+{
+  "name": "07-file-upload-with-cloudinary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+     "dev": "nodemon -r esm ./src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.16.1",
+    "cloudinary": "^1.22.0",
+    "esm": "^3.2.25",
+    "graphql": "^15.3.0",
+    "mongoose": "^5.10.0"
+  }
+}
